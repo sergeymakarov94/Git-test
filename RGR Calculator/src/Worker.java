@@ -178,6 +178,7 @@ public class Worker extends JFrame {
 						otvets = Float.toString(otvetss);
 						t1.setText(otvets);
 					}
+					
 				}
 				if (e.getSource() == bo) {
 					t1.setText("");
