@@ -3,13 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Worker extends JFrame {
-	int i;
-	float v1, v2, otvetss, otvet;
+	int i, tochka=0;
+	float v1, v2, v6,otvetss, otvet;
 	char v4;
-	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, brav, bpl, bmin, bum, bdel,
-			bo, bt, boo, bk, bpm;
+	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, brav, bpl, bmin, bum, bdel,	bo, bt, boo, bk, bpm;
 	JTextField t1;
-	String operation, numS = "0", otvets, v3, v5;
+	String operation, numS = "0", otvets,  v3, v5, v7;
 	eHandler handler = new eHandler();
 
 	public Worker(String s) {
@@ -110,16 +109,52 @@ public class Worker extends JFrame {
 				}
 				if (e.getSource() == b9) {
 					t1.setText(t1.getText() + "9");
-
 				}
 				if (e.getSource() == b0) {
 					t1.setText(t1.getText() + "0");
 				}
 				if (e.getSource() == bt) {
-					t1.setText(t1.getText() + ".");
+					if(tochka > 0) {
+						JOptionPane.showMessageDialog(null,	"We don't need double '.' in one number ");
+					} else {
+						t1.setText(t1.getText() + ".");
+						tochka++;
+					}
+				}
+				if (e.getSource() == bpl) {
+					v1 = Float.valueOf(t1.getText());
+					t1.setText("");
+					operation = "+";
+					tochka=0;
+				}
+				if (e.getSource() == bmin) {
+					v1 = Float.valueOf(t1.getText());
+					t1.setText("");
+					operation = "-";
+					tochka=0;
+				}
+				if (e.getSource() == bum) {
+					v1 = Float.valueOf(t1.getText());
+					t1.setText("");
+					operation = "*";
+					tochka=0;
+				}
+				if (e.getSource() == bdel) {
+					v1 = Float.valueOf(t1.getText());
+					t1.setText("");
+					operation = "/";
+					tochka=0;
 				}
 				if (e.getSource() == bpm) {
-					t1.setText("-" + t1.getText());
+					v6 = Float.valueOf(t1.getText());
+					v7 = Float.toString(v6);
+					v4 = v7.charAt(0);
+					v5 = String.valueOf(v4);
+					if (v5.equals("-")) {
+						t1.setText(v7.substring(1));
+					} else {
+						t1.setText( "-" +t1.getText());
+					}
 				}
 				if (e.getSource() == bk) {
 					v1 = Float.valueOf(t1.getText());
@@ -127,34 +162,14 @@ public class Worker extends JFrame {
 					v4 = v3.charAt(0);
 					v5 = String.valueOf(v4);
 					if (v5.equals("-")) {
-						JOptionPane.showMessageDialog(null,
-								"We can't take sqrt from number with '-'");
-					} else {
+						JOptionPane.showMessageDialog(null,	"We can't take sqrt from number with '-'");
+					} else	{
 						v1 = (float) v1;
 						otvet = (float) Math.sqrt(v1);
 						otvets = Float.toString(otvet);
 						t1.setText(otvets);
 					}
-				}
-				if (e.getSource() == bpl) {
-					v1 = Float.valueOf(t1.getText());
-					t1.setText("");
-					operation = "+";
-				}
-				if (e.getSource() == bmin) {
-					v1 = Float.valueOf(t1.getText());
-					t1.setText("");
-					operation = "-";
-				}
-				if (e.getSource() == bum) {
-					v1 = Float.valueOf(t1.getText());
-					t1.setText("");
-					operation = "*";
-				}
-				if (e.getSource() == bdel) {
-					v1 = Float.valueOf(t1.getText());
-					t1.setText("");
-					operation = "/";
+					tochka=0;
 				}
 				if (e.getSource() == brav) {
 					v2 = Float.valueOf(t1.getText());
@@ -178,7 +193,6 @@ public class Worker extends JFrame {
 						otvets = Float.toString(otvetss);
 						t1.setText(otvets);
 					}
-					
 				}
 				if (e.getSource() == bo) {
 					t1.setText("");
@@ -186,16 +200,16 @@ public class Worker extends JFrame {
 					v2 = 0;
 					otvet = 0;
 					otvets = "";
-
+					tochka=0;
 				}
 				if (e.getSource() == boo) {
 					t1.setText("");
 					v2 = 0;
+					tochka=0;
 				}
 			} catch (Exception ex) {
-				JOptionPane.showMessageDialog(null,
-						"Please, enter correct number!");
+				JOptionPane.showMessageDialog(null,	"Please, enter correct number!");
 			}
 		}
-	}
+	} 
 }

@@ -8,7 +8,5 @@ public class MainClass {
 		w.setSize(200, 220);
 		w.setLocationRelativeTo(null);
 		w.setResizable(false);
-
-		
 	}
 }
