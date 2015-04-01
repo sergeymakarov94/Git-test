@@ -5,7 +5,7 @@ public class MainClass {
 		Worker w = new Worker("Calculator");
 		w.setVisible(true);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		w.setSize(200, 200);
+		w.setSize(200, 220);
 		w.setLocationRelativeTo(null);
 		w.setResizable(false);
 	}

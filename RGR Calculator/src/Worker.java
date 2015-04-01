@@ -3,8 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Worker extends JFrame {
-	int i, v1, v2, otvet;
-	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, brav, bpl, bmin, bum, bdel,	bo;
+	int i;
+	float v1, v2, otvetss, otvet;
+	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, brav, bpl, bmin, bum, bdel,	bo, bt, boo, bk, bpm;
 	JTextField t1;
 	String operation, numS = "0", otvets;
 	eHandler handler = new eHandler();
@@ -28,6 +29,10 @@ public class Worker extends JFrame {
 		bum = new JButton("*");
 		bdel = new JButton("/");
 		bo = new JButton("C");
+		bt = new JButton(".");
+		boo = new JButton("c");
+		bk = new JButton("√");
+		bpm = new JButton("+-");
 		t1 = new JTextField(16);
 		add(t1);
 		add(b1);
@@ -42,10 +47,14 @@ public class Worker extends JFrame {
 		add(b8);
 		add(b9);
 		add(bum);
-		add(bo);
+		add(boo);
 		add(b0);
-		add(brav);
+		add(bpm);
 		add(bdel);
+		add(bo);
+		add(bt);
+		add(bk);
+		add(brav);
 		b1.addActionListener(handler);
 		b2.addActionListener(handler);
 		b3.addActionListener(handler);
@@ -62,6 +71,12 @@ public class Worker extends JFrame {
 		bdel.addActionListener(handler);
 		bo.addActionListener(handler);
 		brav.addActionListener(handler);
+		bt.addActionListener(handler);
+		boo.addActionListener(handler);
+		bk.addActionListener(handler);
+		bpm.addActionListener(handler);
+		//bpm.setSize(b1.getSize());
+		//bpm.setPreferredSize(b1.getPreferredSize());
 	}
 
 	public class eHandler implements ActionListener {
@@ -100,46 +115,58 @@ public class Worker extends JFrame {
 				if (e.getSource() == b0) {
 					t1.setText(t1.getText() + "0");
 				}
+				if (e.getSource() == bt) {
+					t1.setText(t1.getText() + ".");
+				}
+				if (e.getSource() == bpm) {
+					t1.setText( "-" +t1.getText());
+				}
+				if (e.getSource() == bk) {
+					v1 = Float.valueOf(t1.getText());
+					otvet = (float) Math.sqrt(v1);
+					otvets = Float.toString(otvet);
+					t1.setText(otvets);
+				}
 				if (e.getSource() == bpl) {
-					v1 = Integer.valueOf(t1.getText());
+					v1 = Float.valueOf(t1.getText());
 					t1.setText("");
 					operation = "+";
 				}
 				if (e.getSource() == bmin) {
-					v1 = Integer.valueOf(t1.getText());
+					v1 = Float.valueOf(t1.getText());
 					t1.setText("");
 					operation = "-";
 				}
 				if (e.getSource() == bum) {
-					v1 = Integer.valueOf(t1.getText());
+					v1 = Float.valueOf(t1.getText());
 					t1.setText("");
 					operation = "*";
 				}
 				if (e.getSource() == bdel) {
-					v1 = Integer.valueOf(t1.getText());
+					v1 = Float.valueOf(t1.getText());
 					t1.setText("");
 					operation = "/";
 				}
 				if (e.getSource() == brav) {
-					v2 = Integer.valueOf(t1.getText());
+					v2 = Float.valueOf(t1.getText());
 					if ("+".equals(operation)) {
 						otvet = v1 + v2;
-						otvets = Integer.toString(otvet);
+						otvets = Float.toString(otvet);
 						t1.setText(otvets);
 					}
 					if ("-".equals(operation)) {
 						otvet = v1 - v2;
-						otvets = Integer.toString(otvet);
+						otvets = Float.toString(otvet);
 						t1.setText(otvets);
 					}
 					if ("*".equals(operation)) {
 						otvet = v1 * v2;
-						otvets = Integer.toString(otvet);
+						otvets = Float.toString(otvet);
 						t1.setText(otvets);
 					}
 					if ("/".equals(operation)) {
-						otvet = v1 / v2;
-						otvets = Integer.toString(otvet);
+						otvetss = (float) v1 / v2;
+						otvets = Float.toString(otvetss);
 						t1.setText(otvets);
 					}
 				}
@@ -150,6 +177,10 @@ public class Worker extends JFrame {
 					otvet = 0;
 					otvets = "";
 
+				}
+				if (e.getSource() == boo) {
+					t1.setText("");
+					v2 = 0;
 				}
 			} catch (Exception ex) {
 				JOptionPane.showMessageDialog(null,	"Please, enter correct number!");
