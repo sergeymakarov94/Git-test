@@ -33,7 +33,7 @@ public class Worker extends JFrame {
 		bt = new JButton(".");
 		boo = new JButton("c");
 		bk = new JButton("√");
-		bpm = new JButton("+-");
+		bpm = new JButton("±");
 		t1 = new JTextField(16);
 		add(t1);
 		add(b1);
