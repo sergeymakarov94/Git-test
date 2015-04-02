@@ -8,7 +8,7 @@ public class Worker extends JFrame {
 	char v4;
 	JButton b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, brav, bpl, bmin, bum, bdel,	bo, bt, boo, bk, bpm;
 	JTextField t1;
-	String operation, numS = "0", otvets,  v3, v5, v7;
+	String operation, numS = "0", otvets,  v3, v5, v7, otr, otr2;
 	eHandler handler = new eHandler();
 
 	public Worker(String s) {
@@ -167,7 +167,15 @@ public class Worker extends JFrame {
 						v1 = (float) v1;
 						otvet = (float) Math.sqrt(v1);
 						otvets = Float.toString(otvet);
-						t1.setText(otvets);
+						if (otvets.length()>=3) {
+							otr = otvets.substring(otvets.length()-2, otvets.length());
+							if (otr.equals(".0")) {
+								otr2 = otvets.substring(0, otvets.length()-2);
+								t1.setText(otr2);
+							} else {
+								t1.setText(otvets);
+							} 
+						}
 					}
 					tochka=0;
 				}
@@ -176,22 +184,27 @@ public class Worker extends JFrame {
 					if ("+".equals(operation)) {
 						otvet = v1 + v2;
 						otvets = Float.toString(otvet);
-						t1.setText(otvets);
 					}
 					if ("-".equals(operation)) {
 						otvet = v1 - v2;
 						otvets = Float.toString(otvet);
-						t1.setText(otvets);
 					}
 					if ("*".equals(operation)) {
 						otvet = v1 * v2;
 						otvets = Float.toString(otvet);
-						t1.setText(otvets);
 					}
 					if ("/".equals(operation)) {
 						otvetss = (float) v1 / v2;
 						otvets = Float.toString(otvetss);
-						t1.setText(otvets);
+					}
+					if (otvets.length()>=3) {
+						otr = otvets.substring(otvets.length()-2, otvets.length());
+						if (otr.equals(".0")) {
+							otr2 = otvets.substring(0, otvets.length()-2);
+							t1.setText(otr2);
+						} else {
+							t1.setText(otvets);
+						} 
 					}
 				}
 				if (e.getSource() == bo) {
